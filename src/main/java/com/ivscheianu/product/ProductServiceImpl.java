@@ -6,8 +6,10 @@ import com.ivscheianu.base.service.EntityMapper;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 @Stateless
+@Transactional
 public class ProductServiceImpl extends AbstractEntityService<Long, ProductDto, ProductDo> implements ProductService {
 
     @Inject

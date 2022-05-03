@@ -21,8 +21,8 @@ public abstract class AbstractEntityService<IdType extends Serializable, DtoType
     }
 
     @Override
-    public DtoType get(final IdType id) {
-        final DoType databaseObject = getRepository().get(id);
+    public DtoType getById(final IdType id) {
+        final DoType databaseObject = getRepository().getById(id);
         return getMapper().toDto(databaseObject);
     }
 
@@ -40,7 +40,7 @@ public abstract class AbstractEntityService<IdType extends Serializable, DtoType
     }
 
     @Override
-    public void delete(final IdType id) {
-        getRepository().delete(id);
+    public void deleteById(final IdType id) {
+        getRepository().deleteById(id);
     }
 }

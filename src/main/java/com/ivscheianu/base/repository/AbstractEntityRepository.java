@@ -35,7 +35,7 @@ public abstract class AbstractEntityRepository<IdType extends Serializable, DoTy
     }
 
     @Override
-    public DoType get(final IdType id) {
+    public DoType getById(final IdType id) {
         return entityManager.find(doClass, id);
     }
 
@@ -52,8 +52,8 @@ public abstract class AbstractEntityRepository<IdType extends Serializable, DoTy
     }
 
     @Override
-    public void delete(final IdType id) {
-        final DoType doToBeDeleted = get(id);
+    public void deleteById(final IdType id) {
+        final DoType doToBeDeleted = getById(id);
         entityManager.remove(doToBeDeleted);
     }
 }

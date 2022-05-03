@@ -1,7 +1,7 @@
 package com.ivscheianu;
 
 import com.google.common.collect.ImmutableSet;
-import com.ivscheianu.product.ProductResource;
+import com.ivscheianu.product.ProductController;
 
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class App extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         return ImmutableSet.of(
-            ProductResource.class
+            ProductController.class
         );
     }
 }
