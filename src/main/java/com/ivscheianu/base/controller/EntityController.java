@@ -1,11 +1,11 @@
 package com.ivscheianu.base.controller;
 
-import com.ivscheianu.base.service.AbstractDto;
+import com.ivscheianu.base.service.AbstractDTO;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface EntityController<IdType extends Serializable, DtoType extends AbstractDto<IdType>>  {
+public interface EntityController<IdType extends Serializable, DtoType extends AbstractDTO<IdType>>  {
     DtoType save(final DtoType dataTransferObject);
     DtoType getById(final IdType id);
     List<DtoType> getAll();

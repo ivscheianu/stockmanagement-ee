@@ -1,6 +1,6 @@
 package com.ivscheianu.base.controller;
 
-import com.ivscheianu.base.service.AbstractDto;
+import com.ivscheianu.base.service.AbstractDTO;
 import com.ivscheianu.base.service.EntityService;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-public abstract class AbstractEntityController<IdType extends Serializable, DtoType extends AbstractDto<IdType>> implements EntityController<IdType, DtoType> {
+public abstract class AbstractEntityController<IdType extends Serializable, DtoType extends AbstractDTO<IdType>> implements EntityController<IdType, DtoType> {
 
     protected abstract EntityService<IdType, DtoType> getService();
 

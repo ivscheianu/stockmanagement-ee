@@ -1,17 +1,30 @@
 package com.ivscheianu.base.service;
 
-import com.ivscheianu.base.repository.AbstractDo;
+import com.ivscheianu.base.HasId;
+import com.ivscheianu.base.persistence.AbstractDO;
+import org.apache.commons.collections4.CollectionUtils;
 import org.modelmapper.ModelMapper;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Abstract class for transforming any DTO to DO and vice versa. You just need to extend and parameterize it. You can
+ * obliviously call super and extend the functionality or rewrite it from scratch on need.
+ *
+ * @param <DtoType> the type of the Data Transfer Object, the one expose to the external world
+ * @param <DoType>  the type of the Database Object, mapping the DB table
+ */
 
-public abstract class AbstractEntityMapper<DtoType extends AbstractDto<?>, DoType extends AbstractDo<?>> implements EntityMapper<DtoType, DoType> {
+public abstract class AbstractEntityMapper<DtoType extends AbstractDTO<?>, DoType extends AbstractDO<?>> implements EntityMapper<DtoType, DoType> {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
@@ -26,28 +39,47 @@ public abstract class AbstractEntityMapper<DtoType extends AbstractDto<?>, DoTyp
     }
 
     @Override
-    public DtoType toDto(final DoType databaseObject) {
+    public DtoType toDTO(final DoType databaseObject) {
         return modelMapper.map(databaseObject, dtoType);
     }
 
     @Override
-    public DoType toDo(final DtoType dataTransferObject) {
+    public DoType toDO(final DtoType dataTransferObject) {
         return modelMapper.map(dataTransferObject, doType);
     }
 
     @Override
-    public List<DtoType> toDto(final Collection<DoType> databaseObjects) {
-        return databaseObjects
+    public List<DtoType> toDTO(final Collection<DoType> databaseObjects) {
+        return CollectionUtils
+            .emptyIfNull(databaseObjects)
             .stream()
-            .map(this::toDto)
+            .filter(Objects::nonNull)
+            .map(this::toDTO)
             .collect(Collectors.toList());
     }
 
     @Override
-    public List<DoType> toDo(final Collection<DtoType> dataTransferObjects) {
-        return dataTransferObjects
+    public List<DoType> toDO(final Collection<DtoType> dataTransferObjects) {
+        return CollectionUtils
+            .emptyIfNull(dataTransferObjects)
             .stream()
-            .map(this::toDo)
+            .filter(Objects::nonNull)
+            .map(this::toDO)
             .collect(Collectors.toList());
+    }
+
+    protected <T extends Serializable> Stream<T> extractIdsAsStream(final Collection<? extends HasId<T>> objectsWithId) {
+        return objectsWithId
+            .stream()
+            .filter(Objects::nonNull)
+            .map(HasId::getId);
+    }
+
+    protected <T extends Serializable> Set<T> extractIdsAsSet(final Collection<? extends HasId<T>> objectsWithId) {
+        return extractIdsAsStream(objectsWithId).collect(Collectors.toSet());
+    }
+
+    protected <T extends Serializable> List<T> extractIdsAsList(final Collection<? extends HasId<T>> objectsWithId) {
+        return extractIdsAsStream(objectsWithId).collect(Collectors.toList());
     }
 }

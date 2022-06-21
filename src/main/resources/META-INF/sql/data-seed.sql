@@ -1,0 +1,6 @@
+INSERT INTO user(id, user_name, first_name, last_name, email, password, created_at, updated_at) VALUES (1, 'ivscheianu', 'Scheianu', 'Ion Valentin', 'ivscheianu@gmail.com', '$2a$10$VQDHXhDYG/j2cMUOoo/M8e2VDV17kzjIza7GfivZUIS5dgaOyc1QG', now(), now());
+INSERT INTO user(id, user_name, first_name, last_name, email, password, created_at, updated_at) VALUES (2, 'averagejoe', 'Average', 'Joe', 'average.joe@gmail.com', '$2a$12$d.stPHpHqhVzuAb.hpck5.c8cnb8CqNQg6ByFd/jdLIdtGIai8W1y', now(), now());
+INSERT INTO role(id, created_at, updated_at, description, name, label) VALUES (1, now(), now(), 'Normal user', 'User', 'ROLE_USER'), (2, now(), now(), 'Admin, can control everything', 'Admin', 'ROLE_ADMIN');
+INSERT INTO role_user(user_id, role_id) VALUES (1, 1), (1, 2), (2, 1);
+INSERT INTO bucket(id, name, user_id, created_at, updated_at) VALUES (1, 'stockmanagement-ivscheianu', 1, now(), now());
+INSERT INTO bucket(id, name, user_id, created_at, updated_at) VALUES (2, 'stockmanagement-averagejoe', 2, now(), now());
