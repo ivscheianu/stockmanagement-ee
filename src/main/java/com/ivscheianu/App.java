@@ -23,11 +23,11 @@ public class App extends Application {
         return Set.of(
             ApieeService.class,
             MultiPartFeature.class,
+            GlobalExceptionMapper.class,
             AuthController.class,
             StockController.class,
             ProductController.class,
-            ImageController.class,
-            GlobalExceptionMapper.class
+            ImageController.class
         );
     }
 }

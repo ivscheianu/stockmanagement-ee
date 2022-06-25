@@ -12,3 +12,4 @@ Features:
 - Integrated with AWS
 
 You can explore it further, I omitted a lot of interesting stuff. For an easier interaction with the API, here's a [Postman collection](https://github.com/ivscheianu/stockmanagement-ee/blob/master/stock-management.postman_collection.json) (the app also has Swagger).
+In case you have compile errors for some Q starting classes, I'm using QueryDSL which will generate some classes at compile time, so just run a ```mvn clean compile``` (I miss Spring's markup interfaces for the repository).
