@@ -12,6 +12,8 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
@@ -24,12 +26,14 @@ public class ImageController {
     private ImageService imageService;
 
     @POST
-    @Path("upload")
+    @Path("upload/{barcode}")
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @RolesAllowed({RoleEnum.Constants.ROLE_USER})
-    public String uploadNewFile(@FormDataParam("file") final InputStream inputStream,
-                                @FormDataParam("file") final FormDataContentDisposition fileDetails,
-                                @Context final UriInfo uriInfo) {
-        return imageService.uploadImage(inputStream, fileDetails);
+    public ImageDTO uploadNewFile(@PathParam("barcode") final String barcode,
+                                  @FormDataParam("file") final InputStream inputStream,
+                                  @FormDataParam("file") final FormDataContentDisposition fileDetails,
+                                  @Context final UriInfo uriInfo) {
+        return imageService.uploadImageForProduct(barcode, inputStream, fileDetails);
     }
 }

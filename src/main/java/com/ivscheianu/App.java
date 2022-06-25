@@ -1,11 +1,11 @@
 package com.ivscheianu;
 
+import com.github.phillipkruger.apiee.ApieeService;
 import com.ivscheianu.stockmanagement.auth.AuthController;
 import com.ivscheianu.stockmanagement.image.ImageController;
 import com.ivscheianu.stockmanagement.product.ProductController;
 import com.ivscheianu.stockmanagement.role.RoleEnum;
 import com.ivscheianu.stockmanagement.stock.StockController;
-import com.ivscheianu.stockmanagement.user.UserController;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 import java.util.Set;
@@ -20,11 +20,11 @@ public class App extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         return Set.of(
-            StockController.class,
-            ProductController.class,
+            ApieeService.class,
             MultiPartFeature.class,
             AuthController.class,
-            UserController.class,
+            StockController.class,
+            ProductController.class,
             ImageController.class
         );
     }

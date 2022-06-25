@@ -5,5 +5,5 @@ import com.ivscheianu.base.persistence.EntityRepository;
 import java.util.Optional;
 
 public interface ProductRepository extends EntityRepository<Long, ProductDO> {
-    Optional<ProductDO> getByBarcode(final String barcode);
+    Optional<ProductDO> getByBarcode(final String barcode, final long userId);
 }

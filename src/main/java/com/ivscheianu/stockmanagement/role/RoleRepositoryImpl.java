@@ -1,33 +1,34 @@
 package com.ivscheianu.stockmanagement.role;
 
-import com.ivscheianu.base.persistence.AbstractEntityRepository;
+import com.ivscheianu.base.persistence.AbstractQueryDslRepository;
 import com.ivscheianu.stockmanagement.user.QUserDO;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.core.types.dsl.EntityPathBase;
 
 import java.util.List;
 
 import javax.ejb.Stateless;
 
 @Stateless
-public class RoleRepositoryImpl extends AbstractEntityRepository<Long, RoleDO> implements RoleRepository {
+public class RoleRepositoryImpl extends AbstractQueryDslRepository<Long, RoleDO> implements RoleRepository {
 
     private static final String ID = "id";
     private static final String USERS = "users";
+    public static final QUserDO USER_MODEL = QUserDO.userDO;
+    public static final QRoleDO ROLE_MODEL = QRoleDO.roleDO;
 
     @Override
     public List<RoleDO> getRolesByUserId(final long userId) {
-
-        final JPAQuery<RoleDO> query = newJpaQuery();
-//        return query.from(QUserDO.userDO, QUserDO.userDO)
-//            .where(QUserDO.userDO.id.eq(userId))
-//            .select(QRoleDO.roleDO)
-//            .fetch();
-        return query
-            .from(QUserDO.userDO)
-            .innerJoin(QUserDO.userDO.roles, QRoleDO.roleDO)
+        return newJpaQuery()
+            .from(USER_MODEL)
+            .innerJoin(USER_MODEL.roles, ROLE_MODEL)
             .fetchJoin()
-            .where(QUserDO.userDO.id.eq(userId))
-            .select(QRoleDO.roleDO)
+            .where(USER_MODEL.id.eq(userId))
+            .select(ROLE_MODEL)
             .fetch();
+    }
+
+    @Override
+    protected EntityPathBase<RoleDO> getEntityModel() {
+        return ROLE_MODEL;
     }
 }

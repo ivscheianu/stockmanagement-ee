@@ -4,3 +4,8 @@ INSERT INTO role(id, created_at, updated_at, description, name, label) VALUES (1
 INSERT INTO role_user(user_id, role_id) VALUES (1, 1), (1, 2), (2, 1);
 INSERT INTO bucket(id, name, user_id, created_at, updated_at) VALUES (1, 'stockmanagement-ivscheianu', 1, now(), now());
 INSERT INTO bucket(id, name, user_id, created_at, updated_at) VALUES (2, 'stockmanagement-averagejoe', 2, now(), now());
+INSERT INTO product(id, name, barcode, user_id, created_at, updated_at) VALUES (1, 'Apples', '123', 1, now(), now());
+INSERT INTO product(id, name, barcode, user_id, created_at, updated_at) VALUES (2, 'Pears', '111', 1, now(), now());
+INSERT INTO stock(id, name, location, unit, alert_limit, description, product_id, created_at, updated_at) VALUES (1, 'Apple stock 1', 'Location 1', 'Kg', 100, 'Description 1', 1, now(), now());
+INSERT INTO stock(id, name, location, unit, alert_limit, description, product_id, created_at, updated_at) VALUES (2, 'Apple stock 2', 'Location 2', 'Kg', 100, 'Description 2', 1, now(), now());
+INSERT INTO image(id, identifier, location, storage_type, bucket_id, product_id, created_at, updated_at) VALUES (1, 'apple-fruit.jpg', 'https://stockmanagement-ivscheianu.s3.amazonaws.com/apple-fruit.jpg', 1, 1, 1, now(), now());

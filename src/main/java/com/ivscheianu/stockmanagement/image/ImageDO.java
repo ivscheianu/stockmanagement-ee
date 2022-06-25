@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +21,6 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@NaturalIdCache
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image")
@@ -35,14 +33,17 @@ public class ImageDO extends AbstractDO<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private ProductDO product;
-
     @Column(nullable = false, name = "storage_type")
     private Integer storageType;
 
     @Column(nullable = false)
+    private String identifier;
+
+    @Column(nullable = false)
     private String location;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductDO product;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private BucketDO bucket;

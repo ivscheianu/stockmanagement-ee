@@ -3,6 +3,7 @@ package com.ivscheianu.stockmanagement.product;
 import com.ivscheianu.base.persistence.AbstractDO;
 import com.ivscheianu.stockmanagement.image.ImageDO;
 import com.ivscheianu.stockmanagement.stock.StockDO;
+import com.ivscheianu.stockmanagement.user.UserDO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,9 +22,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Data
@@ -33,8 +33,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Table(name = "product")
 @Builder(toBuilder = true)
-@ToString(callSuper = true, exclude = {"stock"})
-@EqualsAndHashCode(callSuper = true, exclude = {"stock"})
+@ToString(callSuper = true, exclude = {"user"})
+@EqualsAndHashCode(callSuper = true, exclude = {"user"})
 public class ProductDO extends AbstractDO<Long> {
 
     @Id
@@ -48,10 +48,20 @@ public class ProductDO extends AbstractDO<Long> {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "stock_id")
-    private StockDO stock;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserDO user;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+        mappedBy = "product",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<StockDO> stocks;
+
+    @OneToMany(
+        mappedBy = "product",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
     private List<ImageDO> images;
 }

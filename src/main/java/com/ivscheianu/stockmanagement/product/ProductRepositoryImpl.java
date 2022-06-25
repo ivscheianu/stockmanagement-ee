@@ -1,25 +1,38 @@
 package com.ivscheianu.stockmanagement.product;
 
-import com.ivscheianu.base.persistence.AbstractEntityRepository;
+import static com.querydsl.core.types.ExpressionUtils.allOf;
+
+import com.ivscheianu.base.persistence.AbstractQueryDslRepository;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.EntityPathBase;
+import com.querydsl.jpa.impl.JPAQuery;
 
 import java.util.Optional;
 
 import javax.ejb.Stateless;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 
 @Stateless
-public class ProductRepositoryImpl extends AbstractEntityRepository<Long, ProductDO> implements ProductRepository {
+public class ProductRepositoryImpl extends AbstractQueryDslRepository<Long, ProductDO> implements ProductRepository {
 
     private static final String BARCODE = "barcode";
 
+    private static final QProductDO PRODUCT_MODEL = QProductDO.productDO;
+
     @Override
-    public Optional<ProductDO> getByBarcode(final String barcode) {
+    public Optional<ProductDO> getByBarcode(final String barcode, final long userId) {
         return execute(() -> {
-            final Predicate isEqual = criteriaBuilder.equal(root.get(BARCODE), barcode);
-            final CriteriaQuery<ProductDO> query = criteriaQuery.select(root).where(isEqual);
-            final ProductDO result = entityManager.createQuery(query).getSingleResult();
-            return Optional.of(result);
+            final Predicate barcodeEquals = PRODUCT_MODEL.barcode.eq(barcode);
+            final Predicate userEquals = PRODUCT_MODEL.user.id.eq(userId);
+            final JPAQuery<ProductDO> query = newJpaQuery()
+                .select(PRODUCT_MODEL)
+                .from(PRODUCT_MODEL)
+                .where(allOf(barcodeEquals, userEquals));
+            return Optional.of(query.fetchFirst());
         });
+    }
+
+    @Override
+    protected EntityPathBase<ProductDO> getEntityModel() {
+        return PRODUCT_MODEL;
     }
 }

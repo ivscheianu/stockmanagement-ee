@@ -9,5 +9,5 @@ public interface EntityRepository<IdType extends Serializable, DoType extends Ab
     Optional<DoType> getById(final IdType id);
     List<DoType> getAll();
     DoType update(final DoType databaseObject);
-    boolean deleteById(final IdType id);
+    void deleteById(final IdType id);
 }

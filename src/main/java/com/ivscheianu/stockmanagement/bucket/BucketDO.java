@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.NaturalIdCache;
 
 import java.util.List;
 
@@ -27,7 +26,6 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@NaturalIdCache
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "bucket")

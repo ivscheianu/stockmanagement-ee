@@ -7,12 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.json.bind.annotation.JsonbTransient;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, exclude = {"product"})
+@EqualsAndHashCode(callSuper = true, exclude = {"product"})
 public class StockDTO extends AbstractDTO<Long> {
 
     private Long id;
@@ -23,7 +27,10 @@ public class StockDTO extends AbstractDTO<Long> {
 
     private String unit;
 
+    private String location;
+
     private Integer alertLimit;
 
+    @JsonbTransient
     private ProductDTO product;
 }

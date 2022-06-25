@@ -2,6 +2,7 @@ package com.ivscheianu.stockmanagement.user;
 
 import com.ivscheianu.base.persistence.AbstractDO;
 import com.ivscheianu.stockmanagement.bucket.BucketDO;
+import com.ivscheianu.stockmanagement.product.ProductDO;
 import com.ivscheianu.stockmanagement.role.RoleDO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,6 +24,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -61,6 +64,13 @@ public class UserDO extends AbstractDO<Long> {
         inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private Set<RoleDO> roles;
+
+    @OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<ProductDO> products;
 
     @OneToOne(
         mappedBy = "user",

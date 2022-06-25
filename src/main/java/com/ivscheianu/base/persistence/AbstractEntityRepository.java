@@ -1,11 +1,9 @@
 package com.ivscheianu.base.persistence;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,18 +64,13 @@ public abstract class AbstractEntityRepository<IdType extends Serializable, DoTy
 
     @Override
     public DoType update(final DoType databaseObject) {
-        return save(databaseObject);
+        return entityManager.merge(databaseObject);
     }
 
     @Override
-    public boolean deleteById(final IdType id) {
+    public void deleteById(final IdType id) {
         final Optional<DoType> databaseObjectToBeDeleted = getById(id);
         databaseObjectToBeDeleted.ifPresent((databaseObject) -> entityManager.remove(databaseObject));
-        return databaseObjectToBeDeleted.isPresent();
-    }
-
-    protected JPAQuery<DoType> newJpaQuery() {
-        return new JPAQuery<>(entityManager);
     }
 
     protected Optional<DoType> execute(final GetOptionalOperation<DoType> getOptionalOperation) {
@@ -89,16 +82,5 @@ public abstract class AbstractEntityRepository<IdType extends Serializable, DoTy
             log.error("Unexpected error occurred while executing db operation", exception);
         }
         return Optional.empty();
-    }
-
-    protected List<DoType> execute(final GetListOperation<DoType> getListOperation) {
-        try {
-            return getListOperation.execute();
-        } catch (final NoResultException noResultException) {
-            log.error("Failed to find entity", noResultException);
-        } catch (final Exception exception) {
-            log.error("Unexpected error occurred while executing db operation", exception);
-        }
-        return Collections.emptyList();
     }
 }

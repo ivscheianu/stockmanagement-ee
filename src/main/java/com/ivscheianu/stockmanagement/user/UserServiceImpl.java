@@ -55,7 +55,7 @@ public class UserServiceImpl extends AbstractEntityService<Long, UserDTO, UserDO
         return principalName.map(name -> {
             final Optional<UserDO> userDO = userRepository.findByUsername(principalName.get());
             return mapToDto(userDO);
-        }).orElseThrow(() -> new WebApplicationException(UNKNOWN_PRINCIPAL ,Response.Status.UNAUTHORIZED));
+        }).orElseThrow(() -> new WebApplicationException(UNKNOWN_PRINCIPAL, Response.Status.UNAUTHORIZED));
     }
 
     @Override

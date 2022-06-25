@@ -1,6 +1,5 @@
 package com.ivscheianu.stockmanagement.role;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ivscheianu.base.service.AbstractDTO;
 import com.ivscheianu.stockmanagement.user.UserDTO;
 import lombok.AllArgsConstructor;
@@ -11,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Set;
+
+import javax.json.bind.annotation.JsonbTransient;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +29,6 @@ public class RoleDTO extends AbstractDTO<Long> {
 
     private String description;
 
-    @JsonIgnore
+    @JsonbTransient
     private Set<UserDTO> users;
 }

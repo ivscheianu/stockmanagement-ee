@@ -9,14 +9,13 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
@@ -25,8 +24,8 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Table(name = "stock")
 @Builder(toBuilder = true)
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, exclude = {"product"})
+@EqualsAndHashCode(callSuper = true, exclude = {"product"})
 public class StockDO extends AbstractDO<Long> {
 
     @Id
@@ -39,9 +38,11 @@ public class StockDO extends AbstractDO<Long> {
 
     private String unit;
 
+    private String location;
+
     @Column(name = "alert_limit")
     private Integer alertLimit;
 
-    @OneToOne(mappedBy = "stock", fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private ProductDO product;
 }

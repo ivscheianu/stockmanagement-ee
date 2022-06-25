@@ -32,6 +32,7 @@
         <javax.mail.version>1.6.2</javax.mail.version>
         <querydsl.version>5.0.0</querydsl.version>
         <aws-java-sdk-elasticache.version>1.12.243</aws-java-sdk-elasticache.version>
+        <aws-java-sdk-lambda.version>1.11.207</aws-java-sdk-lambda.version>
     </properties>
 
     <dependencyManagement>
@@ -156,11 +157,6 @@
             <version>${aws-java-sdk-s3.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-elasticache</artifactId>
-            <version>${aws-java-sdk-elasticache.version}</version>
-        </dependency>
-        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${version.jsonwebtoken}</version>
@@ -169,6 +165,16 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.29</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.phillip-kruger</groupId>
+            <artifactId>apiee-core</artifactId>
+            <version>2.0.0-oa3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-lambda</artifactId>
+            <version>1.11.207</version>
         </dependency>
     </dependencies>
 
