@@ -5,6 +5,8 @@ import static java.util.Objects.nonNull;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.SneakyThrows;
 
+import java.util.Optional;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.security.enterprise.AuthenticationStatus;
@@ -24,7 +26,9 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 
     @Override
     @SneakyThrows
-    public AuthenticationStatus validateRequest(final HttpServletRequest request, final HttpServletResponse response, final HttpMessageContext context) {
+    public AuthenticationStatus validateRequest(final HttpServletRequest request,
+                                                final HttpServletResponse response,
+                                                final HttpMessageContext context) {
         if (context.isProtected()) {
             return getAuthenticationStatusFromJWT(context);
         } else {
@@ -33,9 +37,9 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     }
 
     private AuthenticationStatus getAuthenticationStatusFromJWT(final HttpMessageContext context) {
-        final String token = extractToken(context);
-        if (nonNull(token)) {
-            return validateToken(token, context);
+        final Optional<String> token = extractToken(context);
+        if (token.isPresent()) {
+            return validateToken(token.get(), context);
         } else {
             return context.responseUnauthorized();
         }
@@ -53,11 +57,12 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
         }
     }
 
-    private String extractToken(final HttpMessageContext context) {
+    private Optional<String> extractToken(final HttpMessageContext context) {
         final String authorizationHeader = context.getRequest().getHeader(AUTHORIZATION_HEADER);
-        if (authorizationHeader != null && authorizationHeader.startsWith(BEARER)) {
-            return authorizationHeader.substring(BEARER.length());
+        if (nonNull(authorizationHeader) && authorizationHeader.startsWith(BEARER)) {
+            final String token = authorizationHeader.substring(BEARER.length());
+            return Optional.of(token);
         }
-        return null;
+        return Optional.empty();
     }
 }
