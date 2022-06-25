@@ -1,0 +1,476 @@
+{
+	"info": {
+		"_postman_id": "be498866-76e0-4c5c-a30a-9c3960999ae9",
+		"name": "stock-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDI4MTgzfQ.Dk47H8mSkFQtgPPOq7W1etkZxan8kYC5ji5jeCayhwgWWZf5sD-rRsAR9rIRIMHajh99EzA8PwHFZ1t7Pdrwfw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"test\",\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"$2a$10$VQDHXhDYG/j2cMUOoo/M8e2VDV17kzjIza7GfivZUIS5dgaOyc1QG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ivscheianu\",\r\n    \"password\": \"$2a$10$VQDHXhDYG/j2cMUOoo/M8e2VDV17kzjIza7GfivZUIS5dgaOyc1QG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDQwMDc0fQ.AvvB962JatesdpJKYHdwih5o4DoWnwlDUgd8lnysfx03bpNgPD5srFXb9HRz30idWQj_wcaI5HXlLkZcLscZJg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Ionut/Desktop/all_main_colors.vertical.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/images/upload/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"images",
+						"upload",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MTM2OTk2fQ.EQtj2Li9DEy2zVtgqK0-vcgtsK2-mjD1Z-6aGWUirdVvpHGz0I7QT5bGJ8cCwGccwzozhhJZuS5jw87OC--ufA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get product by barcode",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDQ4MzE5fQ.8ecuHSs_b2dJok9CzDcZh5d1WTrMi8TK9SS0YzJ9kbmNeE6wABjp69pys2qSjJnSKU43fln2SIwaMUVpTf4pkg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products/barcode/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products",
+						"barcode",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get product by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MTM3NjM5fQ.hNVvOrO4vx1Tv5GtVbcGCB2KelntGsYtILezo1lDZ4-NRHQmaTrz3sHNwSA-Y2YUeXLZm5LUcWkUE3dDlCCL8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDQ4MzE5fQ.8ecuHSs_b2dJok9CzDcZh5d1WTrMi8TK9SS0YzJ9kbmNeE6wABjp69pys2qSjJnSKU43fln2SIwaMUVpTf4pkg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MTA5Njk1fQ.LtAHmknK2hJAMHy9WAAhfX-qIA8yUEL5f25e_gBPUSZ0spldELATo0Z_2LKcL3ThXm9z4YS57pYK7_tDbeYNdg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"barcode\": \"6521\",\r\n        \"images\": [\r\n            {\r\n                \"identifier\": \"my-fruit.png\",\r\n                \"location\": \"raondomlink.org\",\r\n                \"storageType\": 2\r\n            }\r\n        ],\r\n        \"name\": \"Cola\",\r\n        \"stocks\": [\r\n            {\r\n                \"alertLimit\": 350,\r\n                \"description\": \"Cola desc 1\",\r\n                \"location\": \"Street 1\",\r\n                \"name\": \"Cola stock 1\",\r\n                \"unit\": \"Liter\"\r\n            },\r\n            {\r\n                \"alertLimit\": 831,\r\n                \"description\": \"Cola desc 2\",\r\n                \"location\": \"Street 2\",\r\n                \"name\": \"Cola stock 2\",\r\n                \"unit\": \"Liter\"\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MTM3NjM5fQ.hNVvOrO4vx1Tv5GtVbcGCB2KelntGsYtILezo1lDZ4-NRHQmaTrz3sHNwSA-Y2YUeXLZm5LUcWkUE3dDlCCL8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"alertLimit\": 450,\r\n            \"description\": \"New stock\",\r\n            \"name\": \"new Stock\",\r\n            \"location\": \"Strada 321\",\r\n            \"unit\": \"xd\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/stocks/123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"stocks",
+						"123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDQ4MzE5fQ.8ecuHSs_b2dJok9CzDcZh5d1WTrMi8TK9SS0YzJ9kbmNeE6wABjp69pys2qSjJnSKU43fln2SIwaMUVpTf4pkg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/stocks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"stocks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MDQ4MzE5fQ.8ecuHSs_b2dJok9CzDcZh5d1WTrMi8TK9SS0YzJ9kbmNeE6wABjp69pys2qSjJnSKU43fln2SIwaMUVpTf4pkg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"alertLimit\": 200,\r\n            \"description\": \"dasdasda\",\r\n            \"id\": 2,\r\n            \"name\": \"ahahsah\",\r\n            \"unit\": \"xddd\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/stocks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"stocks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpdnNjaGVpYW51IiwiYXV0aCI6IlJPTEVfVVNFUixST0xFX0FETUlOIiwiZXhwIjoxNjU2MTM0MjUzfQ.JNn9tcdjQweepVxULl34ixbqIqi6uw_7wEEvy6mEjshN_YFa1CIzqX7CTPjC-9qf26dDPooY9-WAYRhd-zd21g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/stocks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"stocks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"barcode\": \"123\",\r\n    \"images\": [\r\n        {\r\n            \"id\": 1,\r\n            \"identifier\": \"apple-fruit.jpg\",\r\n            \"location\": \"https://stockmanagement-ivscheianu.s3.amazonaws.com/apple-fruit.jpg\",\r\n            \"storageType\": 1\r\n        }\r\n    ],\r\n    \"name\": \"Apples\",\r\n    \"stocks\": [\r\n        {\r\n            \"alertLimit\": 100,\r\n            \"description\": \"Description 1\",\r\n            \"id\": 1,\r\n            \"location\": \"Location 1\",\r\n            \"name\": \"Apple stock 1\",\r\n            \"unit\": \"Kg\"\r\n        },\r\n        {\r\n            \"alertLimit\": 100,\r\n            \"description\": \"Description 2\",\r\n            \"id\": 2,\r\n            \"location\": \"Location 2\",\r\n            \"name\": \"Apple stock 2\",\r\n            \"unit\": \"Kg\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/stock-management-1.0-SNAPSHOT/resources/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"stock-management-1.0-SNAPSHOT",
+						"resources",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
