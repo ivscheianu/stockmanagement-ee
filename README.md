@@ -2,7 +2,7 @@
 
 ---
 
-###Ok, you can handle Spring, but let's try Java EE! This is my first App using Java EE :). 
+Ok, you can handle Spring, but let's try Java EE! This is my first App using Java EE :). 
 
 It's obviously a pet project, so don't expect to have everything handled (things like users being able to edit each other's stocks and so on, but I probably handled at least some of them, or made it pretty easy to be fixed).
 
