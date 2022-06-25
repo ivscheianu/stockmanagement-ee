@@ -3,6 +3,7 @@ package com.ivscheianu.common.blob.s3;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.ivscheianu.common.property.AWSPropertiesProvider;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

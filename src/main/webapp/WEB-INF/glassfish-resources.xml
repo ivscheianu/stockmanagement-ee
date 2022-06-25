@@ -7,6 +7,7 @@
                           pool-resize-quantity="2"
                           max-pool-size="32"
                           steady-pool-size="8">
+        <!--obviously, it's bad, but it's just a pet project-->
         <property name="URL" value="jdbc:mysql://stockmanagement.csf7mwbgqxkp.us-east-1.rds.amazonaws.com:3306/core?createDatabaseIfNotExist=true&amp;useSSL=false"/>
         <property name="User" value="root"/>
         <property name="Password" value="adminadmin"/>

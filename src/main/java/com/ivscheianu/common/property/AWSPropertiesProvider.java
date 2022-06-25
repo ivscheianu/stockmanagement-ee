@@ -1,4 +1,4 @@
-package com.ivscheianu.common.blob.s3;
+package com.ivscheianu.common.property;
 
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.regions.Regions;

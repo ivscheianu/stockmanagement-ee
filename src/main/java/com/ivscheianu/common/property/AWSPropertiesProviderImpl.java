@@ -1,9 +1,8 @@
-package com.ivscheianu.common.blob.s3;
+package com.ivscheianu.common.property;
 
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.regions.Regions;
-import com.ivscheianu.common.property.AbstractPropertiesReader;
 
 import java.util.Properties;
 
