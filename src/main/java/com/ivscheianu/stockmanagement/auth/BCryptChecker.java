@@ -1,4 +1,4 @@
-package com.ivscheianu.stockmanagement.auth.crypto;
+package com.ivscheianu.stockmanagement.auth;
 
 import com.ivscheianu.stockmanagement.user.UserDTO;
 

@@ -43,7 +43,7 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 
     private AuthenticationStatus validateToken(final String token, final HttpMessageContext context) {
         try {
-            if (jwtService.validateToken(token)) {
+            if (jwtService.isValidToken(token)) {
                 final JWTCredential credential = jwtService.getCredential(token);
                 return context.notifyContainerAboutLogin(credential.getPrincipal(), credential.getAuthorities());
             }
@@ -56,7 +56,7 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     private String extractToken(final HttpMessageContext context) {
         final String authorizationHeader = context.getRequest().getHeader(AUTHORIZATION_HEADER);
         if (authorizationHeader != null && authorizationHeader.startsWith(BEARER)) {
-            return authorizationHeader.substring(BEARER.length(), authorizationHeader.length());
+            return authorizationHeader.substring(BEARER.length());
         }
         return null;
     }

@@ -1,7 +1,6 @@
 package com.ivscheianu.stockmanagement.auth;
 
 import com.ivscheianu.common.property.AbstractPropertiesReader;
-import com.ivscheianu.stockmanagement.auth.crypto.SecurityPropertiesReader;
 
 import javax.ejb.Stateless;
 

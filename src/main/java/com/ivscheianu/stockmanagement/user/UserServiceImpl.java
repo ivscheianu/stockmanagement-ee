@@ -3,7 +3,7 @@ package com.ivscheianu.stockmanagement.user;
 import com.ivscheianu.base.persistence.EntityRepository;
 import com.ivscheianu.base.service.AbstractEntityService;
 import com.ivscheianu.base.service.EntityMapper;
-import com.ivscheianu.stockmanagement.auth.crypto.EncryptionChecker;
+import com.ivscheianu.stockmanagement.auth.EncryptionChecker;
 import com.ivscheianu.stockmanagement.bucket.BucketService;
 
 import java.security.Principal;
