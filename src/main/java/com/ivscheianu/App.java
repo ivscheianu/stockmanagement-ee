@@ -1,6 +1,7 @@
 package com.ivscheianu;
 
 import com.github.phillipkruger.apiee.ApieeService;
+import com.ivscheianu.common.exception.GlobalExceptionMapper;
 import com.ivscheianu.stockmanagement.auth.AuthController;
 import com.ivscheianu.stockmanagement.image.ImageController;
 import com.ivscheianu.stockmanagement.product.ProductController;
@@ -25,7 +26,8 @@ public class App extends Application {
             AuthController.class,
             StockController.class,
             ProductController.class,
-            ImageController.class
+            ImageController.class,
+            GlobalExceptionMapper.class
         );
     }
 }
